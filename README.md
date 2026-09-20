@@ -1,5 +1,7 @@
 # Stallion Build Tracker
 
+**Live app:** https://neil293.github.io/stallion-build-tracker/
+
 A print/build checklist PWA for the Flightory "Stallion" V2 + VTOL RC aircraft.
 Tracks which 3D-printed parts you've printed, lets you filter by section/filament,
 and has a Settings page for the build's configurable options (nose variant,
@@ -25,7 +27,7 @@ It's a static site — `index.html`, `manifest.json`, `sw.js`. No build step.
 2. Under **Build and deployment → Source**, choose **Deploy from a branch**.
 3. Branch: `main`, folder: `/ (root)`. Save.
 4. Wait a minute, then your app is live at:
-   `https://<your-github-username>.github.io/<repo-name>/`
+   https://neil293.github.io/stallion-build-tracker/
 
 ## Installing on your devices
 
