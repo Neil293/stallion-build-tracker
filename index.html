@@ -1,0 +1,742 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Stallion Build Tracker</title>
+<meta name="description" content="Print/build checklist for the Flightory Stallion V2 + VTOL RC aircraft.">
+<meta name="theme-color" content="#1f3a5f">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMAAAADACAYAAABS3GwHAAAB90lEQVR4nOzTMQEAAAzDoB31r3lCAh7YQdgOwgQgTQDSBCBNANIEIE0A0gQgTQDSBCBNANIEIE0A0gQgTQDSBCBNANIEIE0A0gQgTQDSBCBNANIEIE0A0gQgTQDSBCBNANIEIE0A0gQgTQDSBCBNANIEIE0A0gQgTQDSBCBNANIEIE0A0gQgTQDSBCBNANIEIE0A0gQgTQDSBCBNANIEIE0A0gQgTQDSBCBNANIEIE0A0gQgTQDSBCBNANIEIE0A0gQgTQDSBCBNANIEIE0A0gQgTQDSBCBNANIEIE0A0gQgTQDSBCBNANIEIE0A0gQgTQDSBCBNANIEIE0A0gQgTQDSBCBNANIEIE0A0gQgTQDSBCBNANIEIE0A0gQgTQDSBCBNANIEIE0A0gQgTQDSBCBNANIEIE0A0gQgTQDSBCBNANIEIE0A0gQgTQDSBCBNANIEIE0A0gQgTQDSBCBNANIEIE0A0gQgTQDSBCBNANIEIE0A0gQgTQDSBCBNANIEIE0A0gQgTQDSBCBNANIEIE0A0gQgTQDSBCBNANIEIE0A0gQgTQDSBCBNANIEIE0A0gQgTQDSBCBNANIEIE0A0gQgTQDSBCBNANIEIE0A0gQgTQDSBCBNANIEIE0A0gQgTQDSBCBNANIEIE0A0gQgTQDSBCBNANIeAAD//0Ku+WUAAAAGSURBVAMAFVgDAe8g0J4AAAAASUVORK5CYII=">
+<link rel="apple-touch-icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMAAAADACAYAAABS3GwHAAAB90lEQVR4nOzTMQEAAAzDoB31r3lCAh7YQdgOwgQgTQDSBCBNANIEIE0A0gQgTQDSBCBNANIEIE0A0gQgTQDSBCBNANIEIE0A0gQgTQDSBCBNANIEIE0A0gQgTQDSBCBNANIEIE0A0gQgTQDSBCBNANIEIE0A0gQgTQDSBCBNANIEIE0A0gQgTQDSBCBNANIEIE0A0gQgTQDSBCBNANIEIE0A0gQgTQDSBCBNANIEIE0A0gQgTQDSBCBNANIEIE0A0gQgTQDSBCBNANIEIE0A0gQgTQDSBCBNANIEIE0A0gQgTQDSBCBNANIEIE0A0gQgTQDSBCBNANIEIE0A0gQgTQDSBCBNANIEIE0A0gQgTQDSBCBNANIEIE0A0gQgTQDSBCBNANIEIE0A0gQgTQDSBCBNANIEIE0A0gQgTQDSBCBNANIEIE0A0gQgTQDSBCBNANIEIE0A0gQgTQDSBCBNANIEIE0A0gQgTQDSBCBNANIEIE0A0gQgTQDSBCBNANIEIE0A0gQgTQDSBCBNANIEIE0A0gQgTQDSBCBNANIEIE0A0gQgTQDSBCBNANIEIE0A0gQgTQDSBCBNANIEIE0A0gQgTQDSBCBNANIEIE0A0gQgTQDSBCBNANIEIE0A0gQgTQDSBCBNANIEIE0A0gQgTQDSBCBNANIeAAD//0Ku+WUAAAAGSURBVAMAFVgDAe8g0J4AAAAASUVORK5CYII=">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Stallion Tracker">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+  :root {
+    --bg: #eef1ef;
+    --surface: #ffffff;
+    --surface-2: #e4e9e6;
+    --border: #c9d2cd;
+    --text: #16211d;
+    --text-muted: #56655e;
+    --navy: #1f3a5f;
+    --navy-strong: #142a45;
+    --orange: #d9611f;
+    --orange-strong: #b84f16;
+    --green: #2f7d4f;
+    --green-bg: #e1f0e6;
+    --amber: #93650f;
+    --amber-bg: #faedd2;
+    --chip-asa-bg: #dfe9f3;
+    --chip-asa-text: #1f3a5f;
+    --chip-petg-bg: #f5e6da;
+    --chip-petg-text: #8a4a1c;
+    --focus: #2f6fb8;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #12181a;
+      --surface: #1b2325;
+      --surface-2: #222c2e;
+      --border: #333f41;
+      --text: #e9efe9;
+      --text-muted: #a1aead;
+      --navy: #7fa8d9;
+      --navy-strong: #a8c6e8;
+      --orange: #ff8a44;
+      --orange-strong: #ffa26a;
+      --green: #6fce93;
+      --green-bg: #163524;
+      --amber: #e4b559;
+      --amber-bg: #3a2d10;
+      --chip-asa-bg: #223449;
+      --chip-asa-text: #a9c7e8;
+      --chip-petg-bg: #3d2c1c;
+      --chip-petg-text: #eab27f;
+      --focus: #7fa8d9;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #12181a;
+    --surface: #1b2325;
+    --surface-2: #222c2e;
+    --border: #333f41;
+    --text: #e9efe9;
+    --text-muted: #a1aead;
+    --navy: #7fa8d9;
+    --navy-strong: #a8c6e8;
+    --orange: #ff8a44;
+    --orange-strong: #ffa26a;
+    --green: #6fce93;
+    --green-bg: #163524;
+    --amber: #e4b559;
+    --amber-bg: #3a2d10;
+    --chip-asa-bg: #223449;
+    --chip-asa-text: #a9c7e8;
+    --chip-petg-bg: #3d2c1c;
+    --chip-petg-text: #eab27f;
+    --focus: #7fa8d9;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: "IBM Plex Sans", system-ui, sans-serif;
+    padding-inline: 16px;
+  }
+  * { box-sizing: border-box; }
+  h1, h2, h3 { font-family: "Barlow Condensed", system-ui, sans-serif; margin: 0; }
+  .mono { font-family: "IBM Plex Mono", ui-monospace, monospace; }
+  button { font: inherit; }
+  ::selection { background: var(--orange); color: #fff; }
+
+  #app { max-width: 760px; margin: 0 auto; padding-block: 14px 48px; }
+
+  header.top {
+    position: sticky;
+    top: env(safe-area-inset-top, 0px);
+    z-index: 10;
+    background: var(--bg);
+    padding-block: 6px 10px;
+    margin-inline: -16px;
+    padding-inline: 16px;
+  }
+  .brand {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 10px;
+  }
+  .brand h1 {
+    font-size: 26px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    color: var(--navy-strong);
+    text-transform: uppercase;
+  }
+  .brand .subtitle {
+    font-size: 12px;
+    color: var(--text-muted);
+    font-family: "IBM Plex Mono", monospace;
+    margin-top: -2px;
+  }
+  .sync-pill {
+    font-size: 10.5px;
+    font-family: "IBM Plex Mono", monospace;
+    padding: 3px 8px;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+    white-space: nowrap;
+  }
+  .sync-pill.on { color: var(--green); border-color: var(--green); }
+
+  .tabs {
+    display: flex;
+    gap: 6px;
+    margin-top: 10px;
+    border-bottom: 1px solid var(--border);
+  }
+  .tab-btn {
+    appearance: none;
+    background: none;
+    border: none;
+    border-bottom: 2px solid transparent;
+    padding: 8px 4px 9px;
+    font-family: "Barlow Condensed", sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    cursor: pointer;
+    margin-right: 14px;
+  }
+  .tab-btn.active { color: var(--orange-strong); border-bottom-color: var(--orange); }
+  .tab-btn:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+
+  .progress-wrap { margin-top: 12px; }
+  .progress-row { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 5px; }
+  .progress-row .count { font-family: "IBM Plex Mono", monospace; font-size: 13px; font-weight: 500; font-variant-numeric: tabular-nums; }
+  .progress-row .count b { color: var(--navy-strong); font-size: 15px; }
+  .progress-bar { height: 8px; border-radius: 999px; background: var(--surface-2); overflow: hidden; }
+  .progress-bar > div { height: 100%; background: linear-gradient(90deg, var(--navy), var(--orange)); border-radius: 999px; transition: width .25s ease; }
+  .optional-note { font-size: 11.5px; color: var(--text-muted); margin-top: 4px; font-family: "IBM Plex Mono", monospace; }
+
+  .callout {
+    background: var(--amber-bg);
+    border: 1px solid color-mix(in srgb, var(--amber) 45%, transparent);
+    border-radius: 10px;
+    padding: 12px 14px;
+    margin-top: 14px;
+  }
+  .callout h2 { font-size: 15px; color: var(--amber); text-transform: uppercase; letter-spacing: .03em; margin-bottom: 6px; }
+  .callout ul { margin: 0; padding-left: 18px; display: flex; flex-direction: column; gap: 6px; }
+  .callout li { font-size: 13.5px; line-height: 1.4; }
+  .callout .go { color: var(--navy-strong); font-weight: 600; cursor: pointer; text-decoration: underline; background: none; border: none; padding: 0; font-size: inherit; font-family: inherit; }
+
+  .filters {
+    display: flex;
+    gap: 8px;
+    margin-top: 14px;
+    flex-wrap: wrap;
+  }
+  .filters select {
+    font: inherit;
+    font-size: 13px;
+    padding: 7px 10px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--text);
+    flex: 1 1 140px;
+    min-width: 0;
+  }
+
+  .section-card { margin-top: 20px; }
+  .section-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    padding-bottom: 6px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 8px;
+  }
+  .section-head h2 {
+    font-size: 19px;
+    color: var(--navy-strong);
+    text-transform: uppercase;
+    letter-spacing: .02em;
+  }
+  .section-head .sub-count { font-family: "IBM Plex Mono", monospace; font-size: 12px; color: var(--text-muted); font-variant-numeric: tabular-nums; }
+
+  .part-row {
+    display: flex;
+    gap: 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    align-items: flex-start;
+  }
+  .part-row:last-child { border-bottom: none; }
+  .part-row input[type=checkbox] {
+    width: 20px; height: 20px;
+    flex: none;
+    margin-top: 2px;
+    accent-color: var(--green);
+    cursor: pointer;
+  }
+  .part-main { flex: 1; min-width: 0; }
+  .part-name-line { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 8px; }
+  .part-name { font-weight: 600; font-size: 14.5px; }
+  .part-row.checked .part-name { color: var(--text-muted); text-decoration: line-through; text-decoration-color: var(--green); text-decoration-thickness: 1.5px; }
+  .chip { font-size: 10.5px; font-family: "IBM Plex Mono", monospace; padding: 2px 7px; border-radius: 999px; white-space: nowrap; }
+  .chip.qty { background: var(--surface-2); color: var(--text-muted); }
+  .chip.asa { background: var(--chip-asa-bg); color: var(--chip-asa-text); }
+  .chip.petg { background: var(--chip-petg-bg); color: var(--chip-petg-text); }
+  .chip.optional { background: var(--amber-bg); color: var(--amber); }
+  .chip.source { border: 1px solid var(--border); color: var(--text-muted); background: none; }
+
+  .part-settings { font-family: "IBM Plex Mono", monospace; font-size: 11.5px; color: var(--text-muted); margin-top: 4px; line-height: 1.5; }
+  .part-notes { font-size: 12px; color: var(--text-muted); margin-top: 3px; line-height: 1.4; }
+  .part-path { font-family: "IBM Plex Mono", monospace; font-size: 10.5px; color: var(--text-muted); opacity: .75; margin-top: 4px; word-break: break-word; }
+
+  .empty-state { text-align: center; color: var(--text-muted); padding: 30px 10px; font-size: 13.5px; }
+
+  /* Settings tab */
+  .config-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 14px 16px;
+    margin-top: 14px;
+  }
+  .config-card h3 { font-size: 17px; color: var(--navy-strong); text-transform: uppercase; letter-spacing: .02em; }
+  .config-card .config-note { font-size: 12.5px; color: var(--amber); margin-top: 5px; line-height: 1.4; }
+  .config-card .config-note.plain { color: var(--text-muted); }
+  .config-card .config-disabled-note { font-size: 12.5px; color: var(--text-muted); margin-top: 8px; font-style: italic; }
+  .options-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+  .option-pill {
+    border: 1px solid var(--border);
+    border-radius: 9px;
+    padding: 8px 12px;
+    cursor: pointer;
+    font-size: 13px;
+    background: var(--surface);
+    color: var(--text);
+    text-align: left;
+    flex: 1 1 150px;
+  }
+  .option-pill.selected { border-color: var(--orange); background: color-mix(in srgb, var(--orange) 12%, var(--surface)); }
+  .option-pill.selected .opt-label { color: var(--orange-strong); font-weight: 600; }
+  .option-pill:focus-visible { outline: 2px solid var(--focus); outline-offset: 1px; }
+  .opt-label { display: block; font-weight: 500; }
+  .opt-radio-row { display: flex; align-items: center; gap: 7px; }
+  .opt-radio-row input { accent-color: var(--orange); width: 15px; height: 15px; }
+
+  footer.credits {
+    margin-top: 30px;
+    font-size: 11px;
+    color: var(--text-muted);
+    font-family: "IBM Plex Mono", monospace;
+    text-align: center;
+    line-height: 1.6;
+  }
+
+  @media (max-width: 420px) {
+    .brand h1 { font-size: 21px; }
+    .filters select { flex-basis: 100%; }
+  }
+</style>
+</head>
+<body>
+<div id="app"></div>
+<script>
+
+(function () {
+  "use strict";
+
+  var LWASA = {
+    label: "LW-ASA",
+    chipClass: "asa",
+    settingsLine: "263°C nozzle · 90°C bed (High-Temp plate + glue stick) · 0.56 flow · 10–50% fan (ramped)"
+  };
+  var PETG = {
+    label: "Bambu PETG",
+    chipClass: "petg",
+    settingsLine: "~250°C nozzle (Bambu PETG Basic default) · 70–80°C bed (textured PEI) · ~1.0 flow · ~30–70% fan (Bambu default)"
+  };
+  var FILAMENTS = { LWASA: LWASA, PETG: PETG };
+
+  var BASE_ZIP = "STALLION-FILES-zospag.zip → STALLION FILES/";
+  var VTOL_ZIP = "STALLION-VTOL-FILES-atx12o.zip → STALLION VTOL FILES/";
+
+  var PARTS = [
+    // Fuselage
+    { id: "fus-1", section: "Fuselage", part: "FUS 1L / FUS 1R", qty: "1 each", source: "V2", path: BASE_ZIP + "V2/FUSELAGE/FUS 1L.STL / FUS 1R.STL", filament: "LWASA", infill: "3% gyroid infill (per V1 manual guidance)" },
+    { id: "fus-2", section: "Fuselage", part: "FUS 2L / FUS 2R", qty: "1 each", source: "V2", path: BASE_ZIP + "V2/FUSELAGE/FUS 2L.STL / FUS 2R.STL", filament: "LWASA", infill: "3% gyroid infill" },
+    { id: "fus-3", section: "Fuselage", part: "FUS 3L / FUS 3R", qty: "1 each", source: "V2", path: BASE_ZIP + "V2/FUSELAGE/FUS 3L.STL / FUS 3R.STL", filament: "LWASA", infill: "3% gyroid infill" },
+    { id: "fus-4", section: "Fuselage", part: "FUS 4L / FUS 4R", qty: "1 each", source: "V2", path: BASE_ZIP + "V2/FUSELAGE/FUS 4L.STL / FUS 4R.STL", filament: "LWASA", infill: "3% gyroid infill" },
+    { id: "fus-5", section: "Fuselage", part: "FUS 5L / FUS 5R", qty: "1 each", source: "V2", path: BASE_ZIP + "V2/FUSELAGE/FUS 5L.STL / FUS 5R.STL", filament: "LWASA", infill: "3% gyroid infill" },
+    { id: "fus-root", section: "Fuselage", part: "FUS ROOT L / FUS ROOT R", qty: "1 each", source: "V2", path: BASE_ZIP + "V2/FUSELAGE/FUS ROOT L.STL / FUS ROOT R.STL", filament: "PETG", infill: "New in V2 (no V1 equivalent) — DRAFT 20% grid infill" },
+    { id: "hatch-front", section: "Fuselage", part: "HATCH FRONT 1 / 2", qty: "1 each", source: "V2", path: BASE_ZIP + "V2/FUSELAGE/HATCH FRONT 1.STL / HATCH FRONT 2.STL", filament: "LWASA", infill: "3% gyroid infill" },
+    { id: "hatch-rear", section: "Fuselage", part: "HATCH REAR 1 / 2", qty: "1 each", source: "V2", path: BASE_ZIP + "V2/FUSELAGE/HATCH REAR 1.STL / HATCH REAR 2.STL", filament: "LWASA", infill: "3% gyroid infill" },
+    { id: "front-reinforcement", section: "Fuselage", part: "FRONT REINFORCEMENT", qty: 1, source: "V2", path: BASE_ZIP + "V2/FUSELAGE/FRONT REINFORCEMENT.STL", filament: "PETG", infill: "DRAFT 20% grid infill" },
+    { id: "battery-pad", section: "Fuselage", part: "BATTERY PAD", qty: 1, source: "V2", path: BASE_ZIP + "V2/FUSELAGE/BATTERY PAD.STL", filament: "PETG", infill: "DRAFT 20% grid infill" },
+    { id: "boom-fus-mount", section: "Fuselage", part: "BOOM FUS MOUNT", qty: 1, source: "V2", path: BASE_ZIP + "V2/FUSELAGE/BOOM FUS MOUNT.STL", filament: "PETG", infill: "20% grid infill" },
+    { id: "lock-1-2", section: "Fuselage", part: "LOCK 1 / LOCK 2", qty: "1 each", source: "V2", path: BASE_ZIP + "V2/FUSELAGE/LOCK 1.STL / LOCK 2.STL", filament: "PETG", infill: "20% grid infill" },
+    { id: "lock-spring", section: "Fuselage", part: "LOCK SPRING", qty: 1, source: "V2", path: BASE_ZIP + "V2/FUSELAGE/LOCK SPRING.STL", filament: "PETG", infill: "New in V2 — flex part, print in PETG or TPU; 20% infill" },
+
+    // Fuselage - Nose (config group: nose_variant)
+    { id: "nose-clean", section: "Fuselage", sub: "Nose", part: "NOSE CLEAN", qty: 1, source: "V2", path: BASE_ZIP + "V2/FUSELAGE/NOSE CLEAN.STL", filament: "LWASA", infill: "3% gyroid + 2 walls", group: { id: "nose_variant", option: "clean" } },
+    { id: "nose-vtx", section: "Fuselage", sub: "Nose", part: "NOSE + NOSE TOP", qty: "1 each", source: "V2", path: BASE_ZIP + "V2/FUSELAGE/NOSE.STL / NOSE TOP.STL", filament: "LWASA", infill: "3% gyroid + 2 walls", group: { id: "nose_variant", option: "vtx" } },
+    { id: "nose-gimbal", section: "Fuselage", sub: "Nose", part: "NOSE GIMBAL + NOSE TOP GIMBAL", qty: "1 each", source: "V2", path: BASE_ZIP + "V2/FUSELAGE/NOSE GIMBAL .STL / NOSE TOP GIMBAL.STL", filament: "LWASA", infill: "3% gyroid + 2 walls — gimbal-camera mount nose", group: { id: "nose_variant", option: "gimbal" } },
+
+    // Wing
+    { id: "wing-root", section: "Wing", part: "WING ROOT L / R", qty: "1 each", source: "V2", path: BASE_ZIP + "V2/WING/WING ROOT L.STL / WING ROOT R.STL", filament: "PETG", infill: "DRAFT 20% grid infill" },
+    { id: "servo-cover", section: "Wing", part: "SERVO COVER L / R", qty: "1 each", source: "V2", path: BASE_ZIP + "V2/WING/SERVO COVER L.STL / SERVO COVER R.STL", filament: "PETG", infill: "DRAFT 20% grid infill" },
+    { id: "aileron", section: "Wing", part: "AILERON 1L/1R, 2L/2R", qty: "1 each", source: "V2", path: BASE_ZIP + "V2/WING/AILERON 1L.STL / 1R / 2L / 2R.STL", filament: "LWASA", infill: "4% cubic subdivision infill" },
+    { id: "wing-lock-base", section: "Wing", part: "WING LOCK BASE", qty: 1, source: "V2", path: BASE_ZIP + "V2/WING/WING LOCK BASE.STL", filament: "PETG", infill: "New in V2 — 20% grid infill" },
+    { id: "wing-lock-front", section: "Wing", part: "WING LOCK FRONT L / R", qty: "1 each", source: "V2", path: BASE_ZIP + "V2/WING/WING LOCK FRONT L.STL / R.STL", filament: "PETG", infill: "New in V2 — 20% grid infill" },
+    { id: "wing-lock-rear", section: "Wing", part: "WING LOCK REAR L / R", qty: "1 each", source: "V2", path: BASE_ZIP + "V2/WING/WING LOCK REAR L.STL / R.STL", filament: "PETG", infill: "New in V2 — 20% grid infill" },
+
+    // Wing motor mount size (config group)
+    { id: "motor-mount-f60", section: "Wing", part: "MOTOR MOUNT F60", qty: 1, source: "V2", path: BASE_ZIP + "V2/WING/MOTOR MOUNT F60.STL", filament: "PETG", infill: "20% grid infill", group: { id: "motor_mount_size", option: "f60" } },
+    { id: "motor-mount-f90", section: "Wing", part: "MOTOR MOUNT F90", qty: 1, source: "V2", path: BASE_ZIP + "V2/WING/MOTOR MOUNT F90.STL", filament: "PETG", infill: "20% grid infill", group: { id: "motor_mount_size", option: "f90" } },
+
+    // Wing tip / LED (config group: wingtip_led)
+    { id: "wing3-noled", section: "Wing", sub: "Wingtip", part: "WING 3 L / R (no LED)", qty: "1 each", source: "V2", path: BASE_ZIP + "V2/WING/WING 3 L NO LED.STL / WING 3 R NO LED.STL", filament: "LWASA", infill: "3% cubic subdivision infill", group: { id: "wingtip_led", option: "no_led" } },
+    { id: "wingtip-noled", section: "Wing", sub: "Wingtip", part: "WINGTIP L / R (no LED)", qty: "1 each", source: "V2", path: BASE_ZIP + "V2/WING/WINGTIP L NO LED.STL / WINGTIP R NO LED.STL", filament: "LWASA", infill: "3% cubic subdivision infill", group: { id: "wingtip_led", option: "no_led" } },
+    { id: "wing3-led", section: "Wing", sub: "Wingtip", part: "WING 3 L / R (LED)", qty: "1 each", source: "V2", path: BASE_ZIP + "V2/WING/WING 3 L.STL / WING 3 R.STL", filament: "LWASA", infill: "3% cubic subdivision infill — not replaced by VTOL kit, use base V2 part", group: { id: "wingtip_led", option: "led" } },
+    { id: "wingtip-led", section: "Wing", sub: "Wingtip", part: "WINGTIP L / R (LED) + WING LED COVER L/R", qty: "1 each", source: "V2", path: BASE_ZIP + "V2/WING/WINGTIP L LED.STL / WINGTIP R LED.STL + WING LED COVER L.STL / R.STL", filament: "LWASA", infill: "3% cubic subdivision infill", group: { id: "wingtip_led", option: "led" } },
+
+    // Wing - VTOL conversion (fixed, this build is VTOL)
+    { id: "wing1-vtol", section: "Wing – VTOL conversion", part: "WING 1L VTOL / WING 1R VTOL", qty: "1 each", source: "V2 VTOL", path: VTOL_ZIP + "V2/STL/WING 1L VTOL.STL / WING 1R VTOL.STL", filament: "LWASA", infill: "3% cubic subdivision infill — REPLACES base V2 WING 1 L/R, do not print the base version" },
+    { id: "wing2-vtol", section: "Wing – VTOL conversion", part: "WING 2L VTOL / WING 2R VTOL", qty: "1 each", source: "V2 VTOL", path: VTOL_ZIP + "V2/STL/WING 2L VTOL.STL / WING 2R VTOL.STL", filament: "LWASA", infill: "3% cubic subdivision infill — REPLACES base V2 WING 2L/2R, do not print the base version" },
+    { id: "boom-lr", section: "Wing – VTOL conversion", part: "BOOM L / BOOM R", qty: "1 each", source: "V2 VTOL", path: VTOL_ZIP + "V2/STL/BOOM L.STL / BOOM R.STL", filament: "PETG", filamentNote: "or carbon-fibre-filled if you can print ~300°C", infill: "3 walls, 20% cubic infill" },
+    { id: "motor-mount-tail", section: "Wing – VTOL conversion", part: "MOTOR MOUNT TAIL", qty: 1, source: "V2 VTOL", path: VTOL_ZIP + "V2/STL/MOTOR MOUNT TAIL.STL", filament: "PETG", filamentNote: "or CF-filled", infill: "3 walls, 20% cubic infill" },
+    { id: "motor-mount-front", section: "Wing – VTOL conversion", part: "MOTOR MOUNT FRONT", qty: "2 (one per tilt motor)", source: "V2 VTOL", path: VTOL_ZIP + "V2/STL/MOTOR MOUNT FRONT.STL", filament: "PETG", filamentNote: "or CF-filled", infill: "100% infill, SOLID print — heavily loaded part. Consider fiberglass/epoxy reinforcement inside." },
+
+    // Tail - boom hardware
+    { id: "boom-fus-insert", section: "Tail", sub: "Boom hardware", part: "BOOM FUS INSERT", qty: 1, source: "V2", path: BASE_ZIP + "V2/TAIL/BOOM FUS INSERT.STL", filament: "PETG", infill: "New in V2 boom system — 20% grid infill" },
+    { id: "boom-knob", section: "Tail", sub: "Boom hardware", part: "BOOM KNOB", qty: 1, source: "V2", path: BASE_ZIP + "V2/TAIL/BOOM KNOB.STL", filament: "PETG", infill: "New in V2 boom system — 20% grid infill" },
+    { id: "boom-tail-insert", section: "Tail", sub: "Boom hardware", part: "BOOM TAIL INSERT", qty: 1, source: "V2", path: BASE_ZIP + "V2/TAIL/BOOM TAIL INSERT.STL", filament: "PETG", infill: "New in V2 boom system — 20% grid infill" },
+
+    // Tail - V-tail servo orientation (config group, only applies when tail_config = v_tail)
+    { id: "vtail1-standard", section: "Tail", sub: "V-Tail", part: "V TAIL 1L / 1R", qty: "1 each", source: "V2", path: BASE_ZIP + "V2/TAIL/V TAIL 1 L.STL / V TAIL 1 R.STL", filament: "LWASA", infill: "3% gyroid infill — standard servo orientation; print unless your servo mounting needs the inverted layout", group: { id: "vtail_servo_orientation", option: "standard" } },
+    { id: "vtail1-inverted", section: "Tail", sub: "V-Tail", part: "V TAIL 1L / 1R (inverted servo)", qty: "1 each", source: "V2", path: BASE_ZIP + "V2/TAIL/V TAIL 1L (inverded servo).STL / V TAIL 1R (inverded servo).STL", filament: "LWASA", infill: "3% gyroid infill — only print instead of the standard pair if your servo needs to sit inverted; check the wiring diagram first", group: { id: "vtail_servo_orientation", option: "inverted" } },
+
+    // Tail - V-Tail fixed parts (config group: tail_config = v_tail)
+    { id: "vtail-2", section: "Tail", sub: "V-Tail", part: "V TAIL 2L / 2R", qty: "1 each", source: "V2", path: BASE_ZIP + "V2/TAIL/V TAIL 2 L.STL / V TAIL 2 R.STL", filament: "LWASA", infill: "3% gyroid infill", group: { id: "tail_config", option: "v_tail" } },
+    { id: "vtail-tip", section: "Tail", sub: "V-Tail", part: "V TAIL TIP L / R", qty: "1 each", source: "V2", path: BASE_ZIP + "V2/TAIL/V TAIL TIP L.STL / V TAIL TIP R.STL", filament: "LWASA", infill: "3% gyroid infill", group: { id: "tail_config", option: "v_tail" } },
+
+    // Tail - conventional (config group: tail_config = conventional) - not currently active, kept for completeness
+    { id: "tail-123", section: "Tail", sub: "Conventional tail", part: "TAIL 1 / TAIL 2 / TAIL 3", qty: "1 each", source: "V2", path: BASE_ZIP + "V2/TAIL/TAIL 1.STL / TAIL 2 .STL / TAIL 3.STL", filament: "LWASA", infill: "TAIL 1 & 2: 6% gyroid, TAIL 3: 3% gyroid", group: { id: "tail_config", option: "conventional" } },
+    { id: "rudder", section: "Tail", sub: "Conventional tail", part: "RUDDER 1L/1R, 2L/2R", qty: "1 each", source: "V1 (no V2 file exists)", path: BASE_ZIP + "V1/TAIL/RUDDER 1 L.STL / 1 R / 2 L / 2 R.STL", filament: "LWASA", infill: "3% gyroid infill", group: { id: "tail_config", option: "conventional" } },
+
+    // Optional - drilling jigs
+    { id: "boom-drill-fus", section: "Optional", sub: "Drilling jigs (V1)", part: "BOOM DRILL FUS", qty: 1, source: "V1 (not in V2 or VTOL list)", path: BASE_ZIP + "V1/DRILL/BOOM DRILL FUS.STL", filament: "PETG", infill: "20% grid infill", optional: true, optionalNote: "Drilling jig for tube-boom fuselage mount. VTOL uses printed BOOM L/R instead of a tube — likely NOT needed for a VTOL build." },
+    { id: "boom-drill-tail", section: "Optional", sub: "Drilling jigs (V1)", part: "BOOM DRILL TAIL", qty: 1, source: "V1 (not in V2 or VTOL list)", path: BASE_ZIP + "V1/DRILL/BOOM DRILL TAIL.STL", filament: "PETG", infill: "20% grid infill", optional: true, optionalNote: "Same as above — probably not needed for a VTOL boom." }
+  ];
+
+  var SECTION_ORDER = ["Fuselage", "Wing", "Wing – VTOL conversion", "Tail", "Optional"];
+
+  var CONFIG_GROUPS = [
+    {
+      id: "nose_variant", label: "Nose variant",
+      options: [
+        { id: "clean", label: "Clean", desc: "FPV camera only, no VTX/gimbal" },
+        { id: "vtx", label: "VTX nose", desc: "2-part nose" },
+        { id: "gimbal", label: "Gimbal", desc: "Camera gimbal mount" }
+      ]
+    },
+    {
+      id: "wingtip_led", label: "Wingtip / WING 3 lighting",
+      options: [
+        { id: "no_led", label: "No LED" },
+        { id: "led", label: "LED" }
+      ]
+    },
+    {
+      id: "vtail_servo_orientation", label: "V-Tail servo orientation (V TAIL 1L/1R)",
+      note: "Open decision — check your wiring diagram / servo mounting before switching away from Standard.",
+      dependsOn: { group: "tail_config", option: "v_tail" },
+      options: [
+        { id: "standard", label: "Standard" },
+        { id: "inverted", label: "Inverted servo" }
+      ]
+    },
+    {
+      id: "motor_mount_size", label: "Wing motor mount size",
+      note: "Not decided yet — both F60 and F90 print by default until you know which motor you're using.",
+      options: [
+        { id: "both", label: "Both (undecided)" },
+        { id: "f60", label: "F60" },
+        { id: "f90", label: "F90" }
+      ]
+    },
+    {
+      id: "tail_config", label: "Tail configuration",
+      note: "This build is V-Tail — Conventional is included so this settings model has room for it later.",
+      noteClass: "plain",
+      options: [
+        { id: "v_tail", label: "V-Tail" },
+        { id: "conventional", label: "Conventional (rudder) tail" }
+      ]
+    }
+  ];
+
+  var DEFAULT_SETTINGS = {
+    nose_variant: "gimbal",
+    wingtip_led: "led",
+    vtail_servo_orientation: "standard",
+    motor_mount_size: "both",
+    tail_config: "v_tail"
+  };
+
+  function isPartActive(part, settings) {
+    if (!part.group) return true;
+    if (part.group.id === "vtail_servo_orientation" && settings.tail_config !== "v_tail") return false;
+    if (part.group.id === "motor_mount_size") {
+      if (settings.motor_mount_size === "both") return true;
+      return settings.motor_mount_size === part.group.option;
+    }
+    return settings[part.group.id] === part.group.option;
+  }
+
+  // ---- persistence ----
+  var LS_CHECKED = "stallion-tracker-checked";
+  var LS_SETTINGS = "stallion-tracker-settings";
+
+  var state = {
+    checked: {},
+    settings: Object.assign({}, DEFAULT_SETTINGS),
+    tab: "checklist",
+    filterSection: "all",
+    filterFilament: "all",
+    dbReady: false,
+    db: null
+  };
+
+  function loadLocal() {
+    try {
+      var c = localStorage.getItem(LS_CHECKED);
+      if (c) state.checked = JSON.parse(c);
+    } catch (e) {}
+    try {
+      var s = localStorage.getItem(LS_SETTINGS);
+      if (s) state.settings = Object.assign({}, DEFAULT_SETTINGS, JSON.parse(s));
+    } catch (e) {}
+  }
+  function saveLocalChecked() {
+    try { localStorage.setItem(LS_CHECKED, JSON.stringify(state.checked)); } catch (e) {}
+  }
+  function saveLocalSettings() {
+    try { localStorage.setItem(LS_SETTINGS, JSON.stringify(state.settings)); } catch (e) {}
+  }
+
+  function setChecked(id, val) {
+    state.checked[id] = val;
+    render();
+    if (state.db) {
+      state.db.collection("checklist").doc(id).set({ checked: val, updatedAt: new Date().toISOString() }).catch(function () {});
+    } else {
+      saveLocalChecked();
+    }
+  }
+
+  function setSetting(groupId, optionId) {
+    state.settings[groupId] = optionId;
+    render();
+    if (state.db) {
+      state.db.doc("settings/config").set(state.settings).catch(function () {});
+    } else {
+      saveLocalSettings();
+    }
+  }
+
+  loadLocal();
+
+  // ---- rendering ----
+  function el(tag, attrs, children) {
+    var node = document.createElement(tag);
+    attrs = attrs || {};
+    for (var k in attrs) {
+      if (k === "class") node.className = attrs[k];
+      else if (k === "text") node.textContent = attrs[k];
+      else if (k.indexOf("on") === 0 && typeof attrs[k] === "function") node.addEventListener(k.slice(2), attrs[k]);
+      else if (attrs[k] !== null && attrs[k] !== undefined) node.setAttribute(k, attrs[k]);
+    }
+    (children || []).forEach(function (c) { if (c) node.appendChild(c); });
+    return node;
+  }
+  function text(s) { return document.createTextNode(s); }
+
+  function activeParts() {
+    return PARTS.filter(function (p) { return isPartActive(p, state.settings); });
+  }
+
+  function renderProgress(container) {
+    var active = activeParts();
+    var required = active.filter(function (p) { return !p.optional; });
+    var optional = active.filter(function (p) { return p.optional; });
+    var doneRequired = required.filter(function (p) { return state.checked[p.id]; }).length;
+    var doneOptional = optional.filter(function (p) { return state.checked[p.id]; }).length;
+    var pct = required.length ? Math.round((doneRequired / required.length) * 100) : 0;
+
+    var wrap = el("div", { class: "progress-wrap" });
+    var row = el("div", { class: "progress-row" });
+    row.appendChild(el("span", { class: "count" }, [
+      el("b", { text: doneRequired + "/" + required.length }),
+      text(" printed")
+    ]));
+    row.appendChild(el("span", { class: "count", text: pct + "%" }));
+    wrap.appendChild(row);
+    var bar = el("div", { class: "progress-bar" }, [el("div", { style: "width:" + pct + "%" })]);
+    wrap.appendChild(bar);
+    if (optional.length) {
+      wrap.appendChild(el("div", { class: "optional-note", text: "+ " + doneOptional + "/" + optional.length + " optional jig(s) (skip by default)" }));
+    }
+    container.appendChild(wrap);
+  }
+
+  function renderCallout(container) {
+    var callout = el("callout" === "" ? "div" : "div", { class: "callout" });
+    callout.appendChild(el("h2", { text: "Open decisions" }));
+    var ul = el("ul");
+    var li1 = el("li");
+    li1.appendChild(text("Servo orientation on V TAIL 1L/1R is set to "));
+    var b1 = el("b", { text: state.settings.tail_config === "v_tail" ? labelFor("vtail_servo_orientation", state.settings.vtail_servo_orientation) : "n/a (conventional tail selected)" });
+    li1.appendChild(b1);
+    li1.appendChild(text(". Check the wiring diagram / your servo mounting before printing — switch it in "));
+    var goBtn1 = el("button", { class: "go", text: "Settings", onclick: function () { state.tab = "settings"; render(); } });
+    li1.appendChild(goBtn1);
+    li1.appendChild(text(" if needed."));
+    ul.appendChild(li1);
+
+    var li2 = el("li");
+    li2.appendChild(text("BOOM DRILL FUS / BOOM DRILL TAIL are V1 drilling jigs with no V2 equivalent — probably not needed since this VTOL build uses fully-printed BOOM L/R instead of a tube boom. Kept as optional, unchecked by default, in the "));
+    var goBtn2 = el("button", { class: "go", text: "Optional section", onclick: function () {
+      state.tab = "checklist"; state.filterSection = "Optional"; render();
+      var target = document.getElementById("section-Optional");
+      if (target) target.scrollIntoView({ behavior: "smooth", block: "start" });
+    } });
+    li2.appendChild(goBtn2);
+    li2.appendChild(text(" below."));
+    ul.appendChild(li2);
+
+    callout.appendChild(ul);
+    container.appendChild(callout);
+  }
+
+  function labelFor(groupId, optionId) {
+    var group = CONFIG_GROUPS.filter(function (g) { return g.id === groupId; })[0];
+    if (!group) return optionId;
+    var opt = group.options.filter(function (o) { return o.id === optionId; })[0];
+    return opt ? opt.label : optionId;
+  }
+
+  function renderFilters(container) {
+    var wrap = el("div", { class: "filters" });
+
+    var sections = ["all"].concat(SECTION_ORDER);
+    var sectionSel = el("select", { "aria-label": "Filter by section" });
+    sections.forEach(function (s) {
+      sectionSel.appendChild(el("option", { value: s, text: s === "all" ? "All sections" : s, selected: state.filterSection === s ? "selected" : null }));
+    });
+    sectionSel.addEventListener("change", function (e) { state.filterSection = e.target.value; render(); });
+    wrap.appendChild(sectionSel);
+
+    var filaments = [["all", "All filaments"], ["LWASA", "LW-ASA"], ["PETG", "Bambu PETG"]];
+    var filSel = el("select", { "aria-label": "Filter by filament" });
+    filaments.forEach(function (f) {
+      filSel.appendChild(el("option", { value: f[0], text: f[1], selected: state.filterFilament === f[0] ? "selected" : null }));
+    });
+    filSel.addEventListener("change", function (e) { state.filterFilament = e.target.value; render(); });
+    wrap.appendChild(filSel);
+
+    container.appendChild(wrap);
+  }
+
+  function renderPartRow(part) {
+    var checked = !!state.checked[part.id];
+    var f = FILAMENTS[part.filament];
+    var row = el("div", { class: "part-row" + (checked ? " checked" : "") });
+    var cb = el("input", { type: "checkbox" });
+    cb.checked = checked;
+    cb.addEventListener("change", function () { setChecked(part.id, cb.checked); });
+    row.appendChild(cb);
+
+    var main = el("div", { class: "part-main" });
+    var nameLine = el("div", { class: "part-name-line" });
+    nameLine.appendChild(el("span", { class: "part-name", text: part.part }));
+    nameLine.appendChild(el("span", { class: "chip qty", text: "qty " + part.qty }));
+    nameLine.appendChild(el("span", { class: "chip " + f.chipClass, text: f.label + (part.filamentNote ? " (" + part.filamentNote + ")" : "") }));
+    if (part.source) nameLine.appendChild(el("span", { class: "chip source", text: part.source }));
+    if (part.optional) nameLine.appendChild(el("span", { class: "chip optional", text: "optional" }));
+    main.appendChild(nameLine);
+
+    main.appendChild(el("div", { class: "part-settings", text: f.settingsLine }));
+    var note = part.infill || part.optionalNote;
+    if (part.infill) main.appendChild(el("div", { class: "part-notes", text: part.infill }));
+    if (part.optionalNote) main.appendChild(el("div", { class: "part-notes", text: part.optionalNote }));
+    main.appendChild(el("div", { class: "part-path", text: part.path }));
+
+    row.appendChild(main);
+    return row;
+  }
+
+  function renderChecklist(container) {
+    renderCallout(container);
+    renderFilters(container);
+
+    var active = activeParts();
+    if (state.filterFilament !== "all") active = active.filter(function (p) { return p.filament === state.filterFilament; });
+
+    var sectionsToShow = state.filterSection === "all" ? SECTION_ORDER : [state.filterSection];
+    var anyRendered = false;
+
+    sectionsToShow.forEach(function (sectionName) {
+      var parts = active.filter(function (p) { return p.section === sectionName; });
+      if (!parts.length) return;
+      anyRendered = true;
+      var done = parts.filter(function (p) { return state.checked[p.id]; }).length;
+      var card = el("div", { class: "section-card", id: "section-" + sectionName.replace(/[^a-zA-Z]/g, "") });
+      var head = el("div", { class: "section-head" }, [
+        el("h2", { text: sectionName }),
+        el("span", { class: "sub-count", text: done + "/" + parts.length })
+      ]);
+      card.appendChild(head);
+
+      var lastSub = null;
+      parts.forEach(function (p) {
+        if (p.sub && p.sub !== lastSub) {
+          card.appendChild(el("div", { class: "part-notes", style: "margin-top:6px;font-weight:600;text-transform:uppercase;font-size:11px;letter-spacing:.04em;", text: p.sub }));
+          lastSub = p.sub;
+        }
+        card.appendChild(renderPartRow(p));
+      });
+      container.appendChild(card);
+    });
+
+    if (!anyRendered) {
+      container.appendChild(el("div", { class: "empty-state", text: "No parts match the current filters." }));
+    }
+  }
+
+  function renderSettings(container) {
+    var intro = el("div", { class: "callout" }, [
+      el("h2", { text: "Build configuration" }),
+      (function () {
+        var p = el("li");
+        p.style.listStyle = "none";
+        p.appendChild(text("Change any option below and the checklist updates to match. Your printed/unprinted state is kept per specific part, so switching back and forth doesn't lose progress."));
+        var ul = el("ul");
+        ul.appendChild(p);
+        return ul;
+      })()
+    ]);
+    container.appendChild(intro);
+
+    CONFIG_GROUPS.forEach(function (group) {
+      var disabled = group.dependsOn && state.settings[group.dependsOn.group] !== group.dependsOn.option;
+      var card = el("div", { class: "config-card" });
+      card.appendChild(el("h3", { text: group.label }));
+      if (group.note) card.appendChild(el("div", { class: "config-note" + (group.noteClass ? " " + group.noteClass : ""), text: group.note }));
+      if (disabled) {
+        card.appendChild(el("div", { class: "config-disabled-note", text: "Only applies when Tail configuration is set to V-Tail." }));
+      } else {
+        var row = el("div", { class: "options-row" });
+        group.options.forEach(function (opt) {
+          var selected = state.settings[group.id] === opt.id;
+          var pill = el("button", { class: "option-pill" + (selected ? " selected" : ""), type: "button", onclick: function () { setSetting(group.id, opt.id); } });
+          pill.appendChild(el("span", { class: "opt-label", text: opt.label }));
+          if (opt.desc) pill.appendChild(el("span", { style: "font-size:11.5px;color:var(--text-muted);", text: opt.desc }));
+          row.appendChild(pill);
+        });
+        card.appendChild(row);
+      }
+      container.appendChild(card);
+    });
+  }
+
+  function render() {
+    var app = document.getElementById("app");
+    app.innerHTML = "";
+
+    var header = el("header", { class: "top" });
+    var brand = el("div", { class: "brand" }, [
+      el("div", null, [
+        el("h1", { text: "Stallion Build Tracker" }),
+        el("div", { class: "subtitle", text: "V2 airframe · VTOL conversion" })
+      ]),
+      el("span", { class: "sync-pill" + (state.dbReady ? " on" : ""), text: state.dbReady ? "synced" : "saved on this device" })
+    ]);
+    header.appendChild(brand);
+
+    var tabs = el("div", { class: "tabs" }, [
+      el("button", { class: "tab-btn" + (state.tab === "checklist" ? " active" : ""), type: "button", onclick: function () { state.tab = "checklist"; render(); }, text: "Checklist" }),
+      el("button", { class: "tab-btn" + (state.tab === "settings" ? " active" : ""), type: "button", onclick: function () { state.tab = "settings"; render(); }, text: "Settings" })
+    ]);
+    header.appendChild(tabs);
+
+    if (state.tab === "checklist") renderProgress(header);
+    app.appendChild(header);
+
+    if (state.tab === "checklist") renderChecklist(app);
+    else renderSettings(app);
+
+    app.appendChild(el("footer", { class: "credits", text: "Flightory Stallion V2 + VTOL · print settings source: flightory.com/printsettings (fetched 2026-09-20)" }));
+  }
+
+  render();
+})();
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('sw.js').catch(function () {});
+  });
+}
+</script>
+</body>
+</html>
