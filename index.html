@@ -238,6 +238,58 @@
   .chip.optional { background: var(--amber-bg); color: var(--amber); }
   .chip.source { border: 1px solid var(--border); color: var(--text-muted); background: none; }
 
+  .photo-btn {
+    flex: none;
+    width: 26px; height: 26px;
+    border-radius: 7px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--text-muted);
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer;
+    padding: 0;
+  }
+  .photo-btn:hover, .photo-btn:focus-visible { color: var(--orange-strong); border-color: var(--orange); }
+  .photo-btn svg { width: 15px; height: 15px; }
+  .photo-btn.has-photo { color: var(--navy-strong); border-color: var(--navy); }
+
+  .modal-overlay {
+    position: fixed; inset: 0;
+    background: rgba(10, 14, 12, 0.6);
+    display: flex; align-items: center; justify-content: center;
+    padding: 20px;
+    z-index: 100;
+  }
+  .modal-overlay[hidden] { display: none; }
+  .modal-box {
+    background: var(--surface);
+    border-radius: 14px;
+    max-width: 480px;
+    width: 100%;
+    max-height: 88vh;
+    overflow: auto;
+    padding: 16px;
+    position: relative;
+  }
+  .modal-close {
+    position: absolute;
+    top: 10px; right: 10px;
+    width: 30px; height: 30px;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--text);
+    cursor: pointer;
+    font-size: 16px;
+    line-height: 1;
+  }
+  .modal-caption { font-weight: 600; font-size: 15px; margin-bottom: 10px; padding-right: 30px; }
+  .modal-img-wrap { display: flex; align-items: center; justify-content: center; min-height: 160px; }
+  .modal-img-wrap img { max-width: 100%; max-height: 60vh; border-radius: 8px; background: #fff; }
+  .modal-missing { color: var(--text-muted); font-size: 13px; line-height: 1.5; text-align: center; padding: 20px 6px; }
+  .modal-missing code { font-family: "IBM Plex Mono", monospace; background: var(--surface-2); padding: 1px 5px; border-radius: 5px; }
+  .modal-loading { color: var(--text-muted); font-size: 13px; text-align: center; padding: 30px 6px; }
+
   .part-settings { font-family: "IBM Plex Mono", monospace; font-size: 11.5px; color: var(--text-muted); margin-top: 4px; line-height: 1.5; }
   .part-notes { font-size: 12px; color: var(--text-muted); margin-top: 3px; line-height: 1.4; }
   .part-path { font-family: "IBM Plex Mono", monospace; font-size: 10.5px; color: var(--text-muted); opacity: .75; margin-top: 4px; word-break: break-word; }
@@ -381,6 +433,19 @@
   ];
 
   var SECTION_ORDER = ["Fuselage", "Wing", "Wing – VTOL conversion", "Tail", "Optional"];
+
+  // Parts with a preview image already in images/<id>.png (rendered from the
+  // VTOL STL files). Every other part still gets a working photo button --
+  // it just shows the "drop a photo in images/<id>.jpg" message until one
+  // exists in the repo.
+  var KNOWN_IMAGES = {
+    "wing1-vtol": true,
+    "wing2-vtol": true,
+    "boom-lr": true,
+    "motor-mount-tail": true,
+    "motor-mount-front": true
+  };
+  var IMAGE_EXTENSIONS = ["jpg", "jpeg", "png"];
 
   var CONFIG_GROUPS = [
     {
@@ -599,6 +664,8 @@
     container.appendChild(wrap);
   }
 
+  var CAMERA_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h3l1.5-2h7L17 8h3a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z"/><circle cx="12" cy="13.5" r="3.2"/></svg>';
+
   function renderPartRow(part) {
     var checked = !!state.checked[part.id];
     var f = FILAMENTS[part.filament];
@@ -611,6 +678,15 @@
     var main = el("div", { class: "part-main" });
     var nameLine = el("div", { class: "part-name-line" });
     nameLine.appendChild(el("span", { class: "part-name", text: part.part }));
+    var photoBtn = el("button", {
+      class: "photo-btn" + (KNOWN_IMAGES[part.id] ? " has-photo" : ""),
+      type: "button",
+      "aria-label": "Photo of " + part.part,
+      title: "Photo",
+      onclick: function () { openPreview(part); }
+    });
+    photoBtn.innerHTML = CAMERA_ICON;
+    nameLine.appendChild(photoBtn);
     nameLine.appendChild(el("span", { class: "chip qty", text: "qty " + part.qty }));
     nameLine.appendChild(el("span", { class: "chip " + f.chipClass, text: f.label + (part.filamentNote ? " (" + part.filamentNote + ")" : "") }));
     if (part.source) nameLine.appendChild(el("span", { class: "chip source", text: part.source }));
@@ -698,6 +774,60 @@
         card.appendChild(row);
       }
       container.appendChild(card);
+    });
+  }
+
+  // ---- photo preview modal ----
+  var previewOverlay = null;
+
+  function ensurePreviewModal() {
+    if (previewOverlay) return previewOverlay;
+    previewOverlay = el("div", { class: "modal-overlay", hidden: "hidden" });
+    previewOverlay.addEventListener("click", function (e) {
+      if (e.target === previewOverlay) closePreview();
+    });
+    document.body.appendChild(previewOverlay);
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape") closePreview();
+    });
+    return previewOverlay;
+  }
+
+  function closePreview() {
+    if (previewOverlay) previewOverlay.hidden = true;
+  }
+
+  function tryLoadImage(id, extIndex, onSuccess, onFail) {
+    if (extIndex >= IMAGE_EXTENSIONS.length) { onFail(); return; }
+    var src = "images/" + id + "." + IMAGE_EXTENSIONS[extIndex];
+    var probe = new Image();
+    probe.onload = function () { onSuccess(src); };
+    probe.onerror = function () { tryLoadImage(id, extIndex + 1, onSuccess, onFail); };
+    probe.src = src;
+  }
+
+  function openPreview(part) {
+    var overlay = ensurePreviewModal();
+    overlay.innerHTML = "";
+    var box = el("div", { class: "modal-box" });
+    box.appendChild(el("button", { class: "modal-close", type: "button", "aria-label": "Close", onclick: closePreview, text: "×" }));
+    box.appendChild(el("div", { class: "modal-caption", text: part.part }));
+    var body = el("div", { class: "modal-loading", text: "Loading…" });
+    box.appendChild(body);
+    overlay.appendChild(box);
+    overlay.hidden = false;
+
+    tryLoadImage(part.id, 0, function (src) {
+      body.replaceWith(el("div", { class: "modal-img-wrap" }, [el("img", { src: src, alt: part.part })]));
+    }, function () {
+      body.replaceWith(el("div", { class: "modal-missing" }, [
+        text("No photo yet for this part."),
+        document.createElement("br"),
+        document.createElement("br"),
+        text("Drop a photo in the repo at "),
+        el("code", { text: "images/" + part.id + ".jpg" }),
+        text(" (or .png) and it'll show up here automatically.")
+      ]));
     });
   }
 

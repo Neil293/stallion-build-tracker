@@ -1,8 +1,15 @@
 // Stallion Build Tracker - service worker
 // Bump CACHE_VERSION whenever index.html/manifest.json change so clients pick up the update.
-var CACHE_VERSION = "v1";
+var CACHE_VERSION = "v2";
 var CACHE_NAME = "stallion-tracker-" + CACHE_VERSION;
-var APP_SHELL = ["./", "./index.html", "./manifest.json"];
+var APP_SHELL = [
+  "./", "./index.html", "./manifest.json",
+  "./images/wing1-vtol.png",
+  "./images/wing2-vtol.png",
+  "./images/boom-lr.png",
+  "./images/motor-mount-tail.png",
+  "./images/motor-mount-front.png"
+];
 
 self.addEventListener("install", function (event) {
   event.waitUntil(
