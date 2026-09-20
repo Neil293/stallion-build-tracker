@@ -40,6 +40,18 @@ It's a static site — `index.html`, `manifest.json`, `sw.js`. No build step.
 Once installed it opens full-screen like a native app and keeps working
 offline (the app shell and your data are cached on-device).
 
+## Photos
+
+Every part has a small camera button that opens a photo. Five VTOL-conversion
+parts (wing panels, booms, motor mounts) already show a rendered preview
+generated from their STL files, in `images/`.
+
+For everything else, tapping the button just tells you which file it's
+looking for, e.g. `images/fus-1.jpg`. To add a real photo of a part once
+you've printed it: drop a `.jpg` or `.png` into `images/` named after that
+part's id (the id is whatever the message names — no code changes needed),
+commit and push. It'll show up automatically next time the button is tapped.
+
 ## Updating the app
 
 Edit `index.html` (parts list is the `PARTS` array near the top of the
